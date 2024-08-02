@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-Python - Apprentissage de Matplotlib, Numpy et Pandas</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header>
+        <h1>Text-to-Python</h1>
+        <p>Apprenez Matplotlib, Numpy et Pandas facilement !</p>
+    </header>
+
+    <main>
+        <section id="file-upload">
+            <h2>Téléchargez votre fichier Excel</h2>
+            <input type="file" id="excel-file" accept=".xlsx, .xls">
+        </section>
+
+        <section id="code-editor">
+            <h2>Éditeur de code</h2>
+            <div id="editor"></div>
+        </section>
+
+        <section id="text-input">
+            <h2>Décrivez ce que vous voulez faire</h2>
+            <textarea id="text-description" rows="4" placeholder="Exemple : Créer un graphique en barres des ventes par mois"></textarea>
+            <button id="generate-code">Générer le code</button>
+        </section>
+
+        <section id="result-display">
+            <h2>Résultat</h2>
+            <div id="result"></div>
+        </section>
+
+        <section id="explanation">
+            <h2>Explication du code</h2>
+            <div id="code-explanation"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Text-to-Python. Tous droits réservés.</p>
+    </footer>
+
+    <script type="module" src="components/FileUploads.js"></script>
+    <script type="module" src="components/CodeEditor.js"></script>
+    <script type="module" src="components/Explanation.js"></script>
+    <script type="module" src="components/ResultDisplay.js"></script>
+    <script type="module" src="components/App.js"></script>
+</body>
+</html>
