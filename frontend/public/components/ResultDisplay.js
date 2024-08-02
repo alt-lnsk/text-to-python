@@ -1,3 +1,4 @@
+// ResultDisplay.js
 import React from 'react';
 
 function ResultDisplay({ result }) {

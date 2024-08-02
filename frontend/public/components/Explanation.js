@@ -1,3 +1,4 @@
+// Explanation.js
 import React from 'react';
 
 function Explanation({ explanation }) {

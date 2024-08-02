@@ -1,3 +1,4 @@
+// CodeEditor.js
 import React, { useState } from 'react';
 
 function CodeEditor({ code, onCodeChange, onGenerateCode }) {

@@ -1,8 +1,9 @@
+// App.js
 import React, { useState } from 'react';
-import FileUpload from './components/FileUpload';
-import CodeEditor from './components/CodeEditor';
-import ResultDisplay from './components/ResultDisplay';
-import Explanation from './components/Explanation';
+import FileUpload from './FileUpload';
+import CodeEditor from './CodeEditor';
+import ResultDisplay from './ResultDisplay';
+import Explanation from './Explanation';
 
 function App() {
   const [data, setData] = useState(null);
@@ -16,7 +17,7 @@ function App() {
 
   const handleCodeGeneration = async (intent) => {
     try {
-      const response = await fetch('/generate_code', {
+      const response = await fetch('http://127.0.0.1:5000/generate_code', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
