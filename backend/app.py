@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from data_processing.excel_reader import read_excel_file
 from nlp.intent_parser import parse_intent
@@ -9,9 +9,21 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import base64
 import io
+import os
 
-app = Flask(__name__)
+# Définir le chemin du dossier frontend
+frontend_folder = os.path.join(os.path.dirname(__file__), '..', 'frontend', 'public')
+
+app = Flask(__name__, static_folder=os.path.join(frontend_folder))
 CORS(app)
+
+@app.route('/')
+def serve_index():
+    return send_from_directory(app.static_folder, 'index.html')
+
+@app.route('/<path:path>')
+def serve_static(path):
+    return send_from_directory(app.static_folder, path)
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -30,9 +42,9 @@ def generate_code():
     data = request.json
     intent = data.get('intent')
     df = pd.read_json(data.get('data'))
-    
+   
     parsed_intent = parse_intent(intent)
-    
+   
     code = ""
     if parsed_intent['library'] == 'pandas':
         code = generate_pandas_code(parsed_intent, df)
@@ -40,7 +52,7 @@ def generate_code():
         code = generate_matplotlib_code(parsed_intent, df)
     elif parsed_intent['library'] == 'numpy':
         code = generate_numpy_code(parsed_intent, df)
-    
+   
     result = None
     if parsed_intent['library'] == 'matplotlib':
         plt.clf()  # Clear the current figure
@@ -51,9 +63,9 @@ def generate_code():
         result = base64.b64encode(img.getvalue()).decode()
     else:
         result = eval(code)
-    
+   
     explanation = generate_explanation(code)
-    
+   
     return jsonify({
         'code': code,
         'result': result,
